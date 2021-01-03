@@ -30,17 +30,83 @@
             width: auto;
             color: #fff;
         }
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 99;
+            transition: 1s cubic-bezier(0, 1, 1, 0);
+        }
+        .lds-ellipsis {
+          display: inline-block;
+          position: relative;
+          width: 80px;
+          height: 80px;
+      }
+      .lds-ellipsis div {
+          position: absolute;
+          top: 33px;
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background: #fff;
+          animation-timing-function: cubic-bezier(0, 1, 1, 0);
+      }
+      .lds-ellipsis div:nth-child(1) {
+          left: 8px;
+          animation: lds-ellipsis1 0.6s infinite;
+      }
+      .lds-ellipsis div:nth-child(2) {
+          left: 8px;
+          animation: lds-ellipsis2 0.6s infinite;
+      }
+      .lds-ellipsis div:nth-child(3) {
+          left: 32px;
+          animation: lds-ellipsis2 0.6s infinite;
+      }
+      .lds-ellipsis div:nth-child(4) {
+          left: 56px;
+          animation: lds-ellipsis3 0.6s infinite;
+      }
+      @keyframes lds-ellipsis1 {
+          0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    @keyframes lds-ellipsis3 {
+      0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+}
+100% {
+    transform: translate(24px, 0);
+}
+}
 
 
-    </style>
-    <title>die</title>
-    <meta name="theme-color" content="rgba(97,75,238, 1)"/>
-    <link rel="icon" type="image/png" href="https://chat-25704.web.app/anjit.ico" sizes="32x32">
+</style>
+<title>die</title>
+<meta name="theme-color" content="rgba(97,75,238, 1)"/>
+<link rel="icon" type="image/png" href="https://chat-25704.web.app/anjit.ico" sizes="32x32">
 </head>
 <body>
 
     <div id='container'>
-        <canvas id="canvas3d"></canvas>  
+        <canvas id="canvas3d"></canvas> 
+        <div class="loader" id="loader">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div> 
 
         <div class="text">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -68,10 +134,12 @@
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
             if(window.screen.availWidth < 400){
-                let canvas = document.getElementById('canvas3d');
-                let ctx = canvas.getContext("2d");
-                ctx.scale(0.5,0.5);
+                alert("zoom out a little bit")
             }
+        });
+        window.addEventListener('load', (event) => {
+            document.getElementById('loader').style.opacity = '0'
+
         });
 
     </script>
